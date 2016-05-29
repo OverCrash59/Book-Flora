@@ -1,5 +1,9 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System;
+using System.Collections.Generic;
+using BookFloraWPF.Helpers;
+using GalaSoft.MvvmLight;
 using BookFloraWPF.Model;
+using GalaSoft.MvvmLight.CommandWpf;
 
 namespace BookFloraWPF.ViewModel
 {
@@ -12,36 +16,53 @@ namespace BookFloraWPF.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private readonly IDataService _dataService;
+        private readonly INavigationService _navigationService;
 
-        /// <summary>
-        /// The <see cref="WelcomeTitle" /> property's name.
-        /// </summary>
-        public const string WelcomeTitlePropertyName = "WelcomeTitle";
+        private List<TileSpecies> _listTileSpecies;
+        private SpeciesSelected _speciesSelected;
+        private RelayCommand _searchCommand;
 
-        private string _welcomeTitle = string.Empty;
-
-        /// <summary>
-        /// Gets the WelcomeTitle property.
-        /// Changes to that property's value raise the PropertyChanged event. 
-        /// </summary>
-        public string WelcomeTitle
+        public RelayCommand SearchCommand
         {
             get
             {
-                return _welcomeTitle;
+                return _searchCommand ??
+                       (_searchCommand =
+                           new RelayCommand(
+                               () =>
+                               {
+                                   _navigationService.NavigateTo(new Uri("/View/SearchPage.xaml", UriKind.Relative));
+                               }));
             }
-            set
+        }
+
+        public List<TileSpecies> ListTileSpecies
+        {
+            get
             {
-                Set(ref _welcomeTitle, value);
+                return _listTileSpecies;
             }
+
+            set { Set(() => ListTileSpecies, ref _listTileSpecies, value); }
+        }
+
+        public SpeciesSelected SpeciesSelected
+        {
+            get
+            {
+                return _speciesSelected;
+            }
+
+            set { Set(() => SpeciesSelected, ref _speciesSelected, value); }
         }
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel(IDataService dataService)
+        public MainViewModel(IDataService dataService, INavigationService navigationService)
         {
             _dataService = dataService;
+            _navigationService = navigationService;
             _dataService.GetData(
                 (item, error) =>
                 {
@@ -51,7 +72,7 @@ namespace BookFloraWPF.ViewModel
                         return;
                     }
 
-                    WelcomeTitle = item.Title;
+                    ListTileSpecies = item;
                 });
         }
 

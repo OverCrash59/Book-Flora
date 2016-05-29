@@ -33,61 +33,61 @@ namespace BookFloraWPF.Model
         
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Kingdom>()
-                .HasKey((k) => k.KingdomId)
-                .HasMany((k) => k.Phylums)
-                .WithRequired((p) => p.Kingdom)
-                .HasForeignKey((p) => p.KingdomForeignKey);
-            modelBuilder.Entity<Kingdom>().Ignore(x => x.IsDirty);
+            //modelBuilder.Entity<Kingdom>()
+            //    .HasKey((k) => k.KingdomId)
+            //    .HasMany((k) => k.Phylums)
+            //    .WithRequired((p) => p.Kingdom)
+            //    .HasForeignKey((p) => p.KingdomForeignKey);
+            //modelBuilder.Entity<Kingdom>().Ignore(x => x.IsDirty);
 
 
-            modelBuilder.Entity<Phylum>()
-                .HasKey(p => p.PhylumId)
-                .HasMany(p => p.Classes)
-                .WithRequired(c => c.Phylum)
-                .HasForeignKey(c => c.PhylumForeignKey);
-            modelBuilder.Entity<Phylum>().Ignore(x => x.IsDirty);
+            //modelBuilder.Entity<Phylum>()
+            //    .HasKey(p => p.PhylumId)
+            //    .HasMany(p => p.Classes)
+            //    .WithRequired(c => c.Phylum)
+            //    .HasForeignKey(c => c.PhylumForeignKey);
+            //modelBuilder.Entity<Phylum>().Ignore(x => x.IsDirty);
 
 
-            modelBuilder.Entity<Classe>()
-                .HasKey(c => c.ClasseId)
-                .HasMany(c => c.Orders)
-                .WithRequired(o => o.Classe)
-                .HasForeignKey(o => o.ClasseForeignKey);
-            modelBuilder.Entity<Classe>().Ignore(x => x.IsDirty);
+            //modelBuilder.Entity<Classe>()
+            //    .HasKey(c => c.ClasseId)
+            //    .HasMany(c => c.Orders)
+            //    .WithRequired(o => o.Classe)
+            //    .HasForeignKey(o => o.ClasseForeignKey);
+            //modelBuilder.Entity<Classe>().Ignore(x => x.IsDirty);
 
 
-            modelBuilder.Entity<Order>()
-                .HasKey(o => o.OrderId)
-                .HasMany(o => o.Families)
-                .WithRequired(f => f.Order)
-                .HasForeignKey(f => f.OrderForeignKey);
-            modelBuilder.Entity<Order>().Ignore(x => x.IsDirty);
+            //modelBuilder.Entity<Order>()
+            //    .HasKey(o => o.OrderId)
+            //    .HasMany(o => o.Families)
+            //    .WithRequired(f => f.Order)
+            //    .HasForeignKey(f => f.OrderForeignKey);
+            //modelBuilder.Entity<Order>().Ignore(x => x.IsDirty);
 
 
-            modelBuilder.Entity<Family>()
-                .HasKey(f => f.FamilyId)
-                .HasMany(f => f.Genera)
-                .WithRequired(g => g.Family)
-                .HasForeignKey(g => g.FamilyForeignKey);
-            modelBuilder.Entity<Family>().Ignore(x => x.IsDirty);
+            //modelBuilder.Entity<Family>()
+            //    .HasKey(f => f.FamilyId)
+            //    .HasMany(f => f.Genera)
+            //    .WithRequired(g => g.Family)
+            //    .HasForeignKey(g => g.FamilyForeignKey);
+            //modelBuilder.Entity<Family>().Ignore(x => x.IsDirty);
 
 
-            modelBuilder.Entity<Genus>()
-                .HasKey(g => g.GenusId)
-                .HasMany(g => g.Specieses)
-                .WithRequired(s => s.Genus)
-                .HasForeignKey(s => s.GenusForeignKey);
-            modelBuilder.Entity<Genus>().Ignore(x => x.IsDirty);
+            //modelBuilder.Entity<Genus>()
+            //    .HasKey(g => g.GenusId)
+            //    .HasMany(g => g.Specieses)
+            //    .WithRequired(s => s.Genus)
+            //    .HasForeignKey(s => s.GenusForeignKey);
+            //modelBuilder.Entity<Genus>().Ignore(x => x.IsDirty);
 
-            modelBuilder.Entity<Species>()
-                .HasKey(s => s.SpeciesId)
-                .HasMany(s => s.Photos)
-                .WithRequired(p => p.Species)
-                .HasForeignKey(p => p.SpeciesForeignKey);
-            modelBuilder.Entity<Species>().Ignore(x => x.IsDirty);
+            //modelBuilder.Entity<Species>()
+            //    .HasKey(s => s.SpeciesId)
+            //    .HasMany(s => s.Photos)
+            //    .WithRequired(p => p.Species)
+            //    .HasForeignKey(p => p.SpeciesForeignKey);
+            //modelBuilder.Entity<Species>().Ignore(x => x.IsDirty);
 
-            modelBuilder.Entity<Photo>().HasKey(p => p.PhotoId);
+            //modelBuilder.Entity<Photo>().HasKey(p => p.PhotoId);
         }
     }
 

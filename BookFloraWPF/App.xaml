@@ -12,6 +12,8 @@
         <!--Global View Model Locator-->
         <vm:ViewModelLocator x:Key="Locator"
                              d:IsDataSource="True" />
+        <SolidColorBrush x:Key="FillLightGreen" Color="#FF77AE81"/>
+        <ImageBrush x:Key="ArrowRectangle" ImageSource="/Assets/Turn right -WF.png" Stretch="Uniform"/>
     </Application.Resources>
     
 </Application>

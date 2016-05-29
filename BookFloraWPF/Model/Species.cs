@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity.Migrations;
+using System.Linq;
 using GalaSoft.MvvmLight;
 
 namespace BookFloraWPF.Model
@@ -175,6 +178,55 @@ namespace BookFloraWPF.Model
             }
 
             set { Set(() => IsDirty, ref _isDirty, value); }
+        }
+
+        public static bool IsExist(string name)
+        {
+            using (var db = new FloraModel())
+            {
+                try
+                {
+                    db.Specieses.Single(p => p.BinomialName == name);
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public static bool IsExist(int id)
+        {
+            using (var db = new FloraModel())
+            {
+                return db.Specieses.Single(p => p.SpeciesId == id) != null;
+            }
+        }
+
+        public static Species GetSpecies(string name)
+        {
+            using (var db = new FloraModel())
+            {
+                return db.Specieses.Single(p => p.BinomialName == name);
+            }
+        }
+
+        public static Species GetSpecies(int id)
+        {
+            using (var db = new FloraModel())
+            {
+                return db.Specieses.Single(p => p.SpeciesId == id);
+            }
+        }
+
+        public static void Save(Species species)
+        {
+            using (var db = new FloraModel())
+            {
+                db.Specieses.AddOrUpdate(species);
+                db.SaveChanges();
+            }
         }
     }
 }

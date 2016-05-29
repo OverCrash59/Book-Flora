@@ -7,6 +7,14 @@ namespace BookFloraWPF.Model
 {
     public interface IDataService
     {
-        void GetData(Action<DataItem, Exception> callback);
+        void GetData(Action<List<TileSpecies>, Exception> callback);
+
+        SpeciesSelected GetSpecies(string query);
+
+        Uri GetUriWiki(string query);
+
+        SpeciesSelected GetSpeciesByWiki(string adresse);
+
+        void Save(SpeciesSelected speciesSelected);
     }
 }
